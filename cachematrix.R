@@ -1,5 +1,4 @@
-## Put comments here that give an overall description of what your
-## functions do
+## This program will take in a matrix and return its inverse.
 
 ## makecacheMatrix will take in an exisiting matrix and output the list functions for the matrix
 
@@ -28,17 +27,28 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## cacheSolve takes in a list from makeCacheMatrix and Return a matrix that is the inverse of 'x'
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+        # from the matrix, trigger getInverse function to get the value of inverse
         inverse <- x$getInverse()
+        
+        # if the value is not null, means it has been called before
+        # hence, getting from the cache and return the value
         if(!is.null(inverse)) {
                 message("getting cached data.")
                 return(inverse)
         }
+        
+        # else get the matrix using get function
         mat <- x$get()
+        
+        # using solve() function to generate the inverse matrix
         inverse <- solve(mat)
+        
+        # then set the inverse
         x$setInverse(inverse)
+        
+        # return the inverse value
         inverse
 }
